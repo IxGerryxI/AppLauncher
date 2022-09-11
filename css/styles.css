@@ -1,0 +1,169 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 0;
+    background: url(../assets/bg.jpg) center;
+    filter: brightness(15%);
+    z-index: -1;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+:root {
+    --primary: #59BFD5;
+    --primary_rgb: 89, 191, 213;
+    --secondary: #05A2A9;
+    --secondary_rgb: 5, 162, 169;
+    --black: #012428;
+    --black_rgb: 1, 36, 40;
+}
+
+.app_container {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 350px;
+    border-radius: 7px;
+    padding-top: 24px;
+    overflow: hidden;
+    background: radial-gradient(rgba(var(--secondary_rgb), 0.7), transparent);
+    cursor: pointer;
+}
+
+#actionbar article {
+    width: auto;
+    background: transparent;
+    padding-top: 0;
+    border-radius: 50%;
+}
+
+#actionbar article.selected {
+    box-shadow: 0 0px 0px -3px var(--primary), 0 0px 0px 0px var(--primary), 0 0px 14px 1px var(--primary) !important;
+    background-color: rgba(var(--primary_rgb), 0.2);
+}
+
+article img {
+    width: 75%;
+}
+
+article h2 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0;
+    padding: 16px;
+    color: var(--primary);
+    background: linear-gradient(transparent, rgba(var(--black_rgb), 0.6) 75%);
+    width: 100%;
+    text-align: center;
+}
+
+article.selected {
+    transform: scale(1.1);
+
+    box-shadow: 0 6px 6px -3px var(--primary),
+        0 10px 14px 1px var(--primary),
+        0 4px 18px 3px var(--primary) !important;
+}
+
+
+
+.actionbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 15px 30px;
+}
+
+/************************************************************************************
+ * POWER BUTTON
+ ************************************************************************************/
+.powerbutton {
+    --size: 30px;
+    --color: var(--primary);
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    width: var(--size);
+    aspect-ratio: 1;
+    border: calc(var(--size) / 5) solid var(--color);
+    border-radius: 50%;
+    border-top-color: transparent;
+}
+
+.powerbutton::before {
+    position: absolute;
+    inset: calc(var(--size) / -5 * 1.2) 0 auto 0;
+    margin: 0 auto;
+    content: "";
+    display: inline-block;
+    width: calc(var(--size) / 5);
+    height: calc(var(--size) / 5 * 3.6);
+    background-color: var(--color);
+    border-radius: 8px;
+}
+
+/************************************************************************************
+ * SETTINGS COG
+ ************************************************************************************/
+.cog {
+    --size: 40px;
+    --color: var(--primary);
+    position: relative;
+    margin: 5px;
+    width: var(--size);
+    aspect-ratio: 1;
+    background-image: radial-gradient(circle at center, transparent 0 20%, var(--color) 20% 50%, transparent 50%), linear-gradient(var(--color), var(--color)), linear-gradient(var(--color), var(--color));
+    background-size: 110% 110%, 25% 20%, 25% 20%;
+    background-repeat: no-repeat;
+    background-position: center, top, bottom;
+}
+
+.cog::before,
+.cog::after {
+    background-image: linear-gradient(var(--color), var(--color)), linear-gradient(var(--color), var(--color));
+    background-size: 25% 20%, 25% 20%;
+    background-repeat: no-repeat;
+    background-position: top, bottom;
+}
+
+.cog::before,
+.cog::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.cog::before {
+    transform: rotate(60deg);
+}
+
+.cog::after {
+    transform: rotate(120deg);
+}
